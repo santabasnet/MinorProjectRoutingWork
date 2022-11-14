@@ -21,6 +21,11 @@ public class Literals {
     public static String EMPTY = "";
 
     /**
+     * Empty JSON
+     */
+    public static String EMPTY_JSON = "{}";
+
+    /**
      * Gson pretty printer.
      */
     public static final Gson gsonPretty = new GsonBuilder().setPrettyPrinting().create();

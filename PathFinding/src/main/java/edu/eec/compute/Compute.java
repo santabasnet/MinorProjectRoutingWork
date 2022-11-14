@@ -1,14 +1,9 @@
 package edu.eec.compute;
 
-import edu.eec.pathwork.Coordinate;
 import edu.eec.pathwork.OrderPair;
 import edu.eec.pathwork.Station;
-import jdk.internal.util.xml.impl.Pair;
-
 import java.util.Comparator;
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 /**
