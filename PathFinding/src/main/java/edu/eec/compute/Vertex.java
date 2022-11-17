@@ -15,10 +15,10 @@ import java.util.List;
  */
 public class Vertex {
 
-    private  String name;
-    private  double x, y;
-    private  List<Edge> adjacentEdges;
-    private  Vertex previous;
+    private String name;
+    private double x, y;
+    private List<Edge> adjacentEdges;
+    private Vertex previous;
 
 
     public String getName() {
@@ -56,9 +56,9 @@ public class Vertex {
     /**
      * Default constructor with the given parameters.
      *
-     * @param name
-     * @param x
-     * @param y
+     * @param name, the label name given to the vertex.
+     * @param x,    lat coordinate.
+     * @param y,    lon coordinate.
      */
     public Vertex(String name, double x, double y) {
         this.name = name;

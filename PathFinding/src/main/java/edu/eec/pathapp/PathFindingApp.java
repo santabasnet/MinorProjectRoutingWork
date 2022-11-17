@@ -1,6 +1,8 @@
 package edu.eec.pathapp;
 
 import edu.eec.compute.Compute;
+import edu.eec.compute.DeliveryPath;
+import edu.eec.compute.NearestNode;
 import edu.eec.ioutils.IOUtils;
 import edu.eec.pathwork.CustomerBucket;
 import edu.eec.pathwork.CustomerCluster;
@@ -32,7 +34,7 @@ public class PathFindingApp {
          * 1. Assign all the base stations.
          */
         List<Station> allBasesData = IOUtils.readAllBases();
-        IntStream.range(0, allBasesData.size()-1)
+        IntStream.range(0, allBasesData.size() - 1)
                 .forEach(i -> CustomerCluster.updateBaseStation(i, allBasesData.get(i)));
         CustomerCluster.allBases().forEach(System.out::println);
 
@@ -45,12 +47,18 @@ public class PathFindingApp {
 
         System.out.println("All cluster sizes: ");
         List<Integer> sizes = CustomerCluster.allBuckets().stream().map(CustomerBucket::customerCount).collect(Collectors.toList());
-        System.out.println(sizes);
+        //System.out.println(sizes);
 
         /**
-         * Now apply Dijkstra's Min-Path Algorithm.
+         * Apply The Nearest first algorithm to generate the path.
          */
+        System.out.println("Path constructed from Nearest Node :");
+        List<DeliveryPath> paths = NearestNode.empty().withCluster(CustomerCluster.allBuckets()).computePaths();
+        paths.forEach(System.out::println);
 
+        /**
+         * Apply Dijkstra's algorithm.
+         */
 
     }
 

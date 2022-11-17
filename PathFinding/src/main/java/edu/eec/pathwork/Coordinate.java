@@ -39,14 +39,21 @@ public class Coordinate {
      * With Latitude.
      */
     public Coordinate withLatitude(double latitude) {
-        return new Coordinate(latitude, getLongitude());
+        return new Coordinate(latitude, this.longitude);
     }
 
     /**
      * With Longitude.
      */
     public Coordinate withLongitude(double longitude) {
-        return new Coordinate(getLatitude(), longitude);
+        return new Coordinate(this.latitude, longitude);
+    }
+
+    /**
+     * Copy the object.
+     */
+    public Coordinate copy() {
+        return new Coordinate(this.latitude, this.longitude);
     }
 
     /**
@@ -77,6 +84,13 @@ public class Coordinate {
      */
     public static Coordinate empty() {
         return new Coordinate();
+    }
+
+    /**
+     * Returns the string key for hash map utility.
+     */
+    public String getKey() {
+        return String.format("%s_%s", getLatitude(), getLongitude());
     }
 
     /**

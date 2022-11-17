@@ -97,7 +97,7 @@ public class Station {
      * Get the coordinate.
      */
     public Coordinate getCoordinate() {
-        return this.coordinate;
+        return this.coordinate.copy();
     }
 
     /**

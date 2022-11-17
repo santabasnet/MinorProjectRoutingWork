@@ -2,6 +2,7 @@ package edu.eec.pathwork;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * This class is a part of the package edu.eec.pathwork and the package
@@ -46,32 +47,29 @@ public class CustomerBucket {
     /**
      * Returns all the customers.
      */
-    public List<Station> getAllCustomers(){
-        return this.allCustomers;
+    public List<Station> getAllCustomers() {
+        return new ArrayList<>(this.allCustomers);
     }
 
     /**
      * Initialize the customers.
      */
     public CustomerBucket withCustomers(List<Station> allCustomers) {
-        this.allCustomers = allCustomers;
-        return this;
+        return new CustomerBucket(this.id, this.baseStation, allCustomers);
     }
 
     /**
      * Initialize the bucket id.
      */
     public CustomerBucket withId(int id) {
-        this.id = id;
-        return this;
+        return new CustomerBucket(id, this.baseStation, this.allCustomers);
     }
 
     /**
      * Initialize base.
      */
     public CustomerBucket withBase(Station baseStation) {
-        this.baseStation = baseStation;
-        return this;
+        return new CustomerBucket(this.id, baseStation, this.allCustomers);
     }
 
     /**
@@ -79,7 +77,7 @@ public class CustomerBucket {
      */
     public CustomerBucket withCustomer(Station customer) {
         this.allCustomers.add(customer);
-        return this;
+        return new CustomerBucket(this.id, this.baseStation, this.allCustomers);
     }
 
     /**
@@ -109,5 +107,22 @@ public class CustomerBucket {
      */
     public static CustomerBucket empty() {
         return new CustomerBucket();
+    }
+
+    /**
+     * Returns all the customer coordinates.
+     */
+    private List<Coordinate> customerCoordinates(){
+        return this.allCustomers.stream().map(Station::getCoordinate).collect(Collectors.toList());
+    }
+
+    /**
+     * Returns the list of coordinates.
+     */
+    public List<Coordinate> allCoordinates(){
+        List<Coordinate> result = new ArrayList<>();
+        result.add(this.baseStation.getCoordinate());
+        result.addAll(this.customerCoordinates());
+        return result;
     }
 }
